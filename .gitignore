@@ -1,6 +1,5 @@
 cr/
 .venv
-.idea
 bin
 obj
 sortie
@@ -8,3 +7,4 @@ tests
 test.py
 testd.py
 testing.sh
+.idea
