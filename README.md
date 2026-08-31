@@ -5,14 +5,11 @@ Ce projet implémente un interpréteur et un analyseur lexical pour le langage B
 
 ## Structure du projet
 - C : Contient les fichiers source pour l'analyse lexicale, syntaxique et l'interprétation du langage Brainfuck.
-- Python : Scripts pour automatiser les tests des programmes Brainfuck.
-- Shell : Script `testing.sh` pour exécuter les tests de manière automatisée.
-
+- src: Fichiers sources
+- include: Fichier d'en-tete
 ## Fichiers principaux
 - `lexique.h` : Définit les types et structures pour l'analyse lexicale.
 - `Makefile` : Automatisation de la compilation des différents exécutables.
-- `test.py` : Script Python pour exécuter et tester un programme Brainfuck.
-- `testing.sh` : Script shell pour lancer des tests sur plusieurs fichiers Brainfuck.
 
 ## Compilation
 Pour compiler le projet, utilisez la commande suivante :
@@ -37,10 +34,6 @@ Pour exécuter un programme Brainfuck en syntaxe ASCII :
 
 Pour exécuter un programme Brainfuck en syntaxe décimale :
 ./brainfuckd chemin/vers/fichier.b
-
-### Tests
-Pour exécuter les tests automatisés :
-./testing.sh
 
 ## Dépendances
 - Compilateur C : gcc
