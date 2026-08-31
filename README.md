@@ -44,9 +44,7 @@ Pour exécuter les tests automatisés :
 
 ## Dépendances
 - Compilateur C : gcc
-- Python : Version 3.x
-- Shell : Compatible avec sh
-
+- C: C99 ? 
 ## Auteur
 Créé par Chloé Briquet et Marie Aubert.
 
