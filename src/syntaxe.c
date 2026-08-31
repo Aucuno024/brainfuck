@@ -25,18 +25,25 @@ type_ast caract()
     {
         case INCR:
             return N_MODIF_P;
+
         case DECR:
             return N_MODIF_M;
+
         case DECALAGE_DROIT:
             return N_DEPLACEMENT_P;
+
         case DECALAGE_GAUCHE:
             return N_DEPLACEMENT_M;
+
         case ENTREE:
             return N_ENTREE;
+
         case SORTIE:
             return N_SORTIE;
+
         default:
             fprintf(stderr, "Erreur syntaxique : Mauvaise interprétation");
+
             exit(33);
     }
 }
@@ -44,17 +51,18 @@ type_ast caract()
 void suite_expr_boucle(ast_t **A, ast_t **B)
 {
     ast_t *suiv = NULL, *boucle = NULL, *sortie = NULL;
+
     if (lexeme_courant.nature == L_EOF)
     {
         fprintf(stderr, "Erreur Syntaxique : boucle non fermée\n");
         exit(32);
     }
+
     if (lexeme_courant.nature == COMMENTAIRE)
     {
         lexeme_courant = reconnaissance();
         return suite_expr_boucle(A, B);
     }
-
 
     if (lexeme_courant.nature == DONE)
     {
@@ -82,13 +90,13 @@ void suite_expression(ast_t **A)
     type_ast type;
 
     if (lexeme_courant.nature == L_EOF)
-    {
         return;
-    }
+
     if (lexeme_courant.nature == COMMENTAIRE)
     {
         lexeme_courant = reconnaissance();
         suite_expression(A);
+
         return;
     }
 
@@ -105,6 +113,7 @@ void suite_expression(ast_t **A)
     } else if (lexeme_courant.nature == DONE)
     {
         fprintf(stderr, "Erreur syntaxique : Fin de boucle\n");
+        
         exit(31);
     } else
     {

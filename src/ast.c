@@ -16,6 +16,7 @@ ast_t *creer_boucle(ast_t *apres, ast_t *boucle)
     A->astg = boucle;
     A->operation = N_BOUCLE_AST;
     A->p_cond = -1;
+
     return A;
 }
 
@@ -26,6 +27,7 @@ ast_t *creer_operation(ast_t *suiv, type_ast nature)
     ast_t *A = malloc(sizeof(ast_t));
     A->astd = suiv;
     A->operation = nature;
+
     return A;
 }
 
@@ -33,20 +35,28 @@ void creer_fin(ast_t **retour)
 {
     ast_t *c= *retour;
     c = c->astg;
+
     while (c->operation != N_F_B_AST && c->astd)
-    {
         c = c->astd;
-    }
+    
    c->astd = *retour;
 }
 
 void afficher_ast(ast_t *A)
 {
     printf("(gauche : ");
-    if (!A) return;
-    if (A->astg) afficher_ast(A->astg);
+
+    if (!A) 
+        return;
+
+    if (A->astg) 
+        afficher_ast(A->astg);
+
     printf(",%c, droit :", A->operation);
-    if (A->astd && A->operation != N_F_B_AST) afficher_ast(A->astd);
+
+    if (A->astd && A->operation != N_F_B_AST) 
+        afficher_ast(A->astd);
+
     printf(")");
 }
 
@@ -55,6 +65,7 @@ void evaluer_it(ast_t *A, int memoire[])
     int i = 0;
     FILE *f = fopen("sortie", "w");
     fclose(f);
+
     while (A)
     {
         i = i % MAX;
@@ -66,28 +77,39 @@ void evaluer_it(ast_t *A, int memoire[])
                 scanf("%s", salut);
                 memoire[i] = atoi(salut);
                 A = A->astd;
-                break;
-            case N_SORTIE:
 
-                    printf("%d",memoire[i]);
-                A = A->astd;
                 break;
+
+            case N_SORTIE:
+                printf("%d",memoire[i]);
+                A = A->astd;
+
+                break;
+
             case N_MODIF_M:
                 A = A->astd;
                 memoire[i]--;
+
                 break;
+
             case N_MODIF_P:
                 memoire[i]++;
                 A = A->astd;
+
                 break;
+
             case N_DEPLACEMENT_M:
                 i--;
                 A = A->astd;
+
                 break;
+
             case N_DEPLACEMENT_P:
                 i++;
                 A = A->astd;
+
                 break;
+
             case N_BOUCLE_AST:
                 if (memoire[i])
                 {
@@ -96,10 +118,14 @@ void evaluer_it(ast_t *A, int memoire[])
                 {
                     A = A->astd;
                 }
+
                 break;
+
             case N_F_B_AST:
                 A = A->astd;
+
                 break;
+
             default:
                 break;
         }
@@ -110,9 +136,9 @@ void evaluer_it(ast_t *A, int memoire[])
 void evaluation(ast_t *A)
 {
     int *memoire = malloc(sizeof(int)*MAX);
+    
     for (int j = 0; j < MAX; j++)
-    {
         memoire[j] = 0;
-    }
+
     evaluer_it(A, memoire);
 }

@@ -4,7 +4,7 @@
 
 #ifndef LEXIQUE_H
 #define LEXIQUE_H
-#endif //LEXIQUE_H
+
 typedef enum
 {
     DECALAGE_DROIT,
@@ -22,7 +22,6 @@ typedef enum
     ELSE,
 } type_lexeme;
 
-
 typedef struct lexeme
 {
     char chaine[2];
@@ -30,14 +29,18 @@ typedef struct lexeme
 } lexeme_t;
 
 /**
- * Effectue l'analyse lexicale du brainfuck sur un fichier
+ * @fn analyse_lex(char *filename)
+ * @brief Effectue l'analyse lexicale du brainfuck sur un fichier
  * @param filename une chaine de caractère représentant le chemin vers un fichier
  **/
 void analyse_lex(char *filename);
 
 /**
- * Utilise les fonctions de lecture_fichier afin de lire dans le fichier ouvert (si il existe)
- *des lexèmes du langage brainfuck.
+ * @fn lexeme_t reconnaissance()
+ * @brief Utilise les fonctions de lecture_fichier afin de lire dans le fichier ouvert (si il existe)
+ * @brief des lexèmes du langage brainfuck.
  * @return un lexème dont la nature convient à l'interpretation du caracctère lu
  */
 lexeme_t reconnaissance();
+
+#endif //LEXIQUE_H

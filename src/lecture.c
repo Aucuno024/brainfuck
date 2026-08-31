@@ -10,6 +10,7 @@ FILE *f;
 void initialiser(char const *filename)
 {
     f = fopen(filename, "r");
+
     if (!f)
     {
         fprintf(stderr, "Erreur de lecture : fichier inexistant\n");
@@ -24,8 +25,11 @@ void lecture(char *c)
         fprintf(stderr, "Erreur de lecture : fichier non initialisé");
         exit(2);
     }
+
     fscanf(f, "%c", c);
-    if (feof(f)) *c = EOF;
+    
+    if (feof(f))
+        *c = EOF;
 }
 
 void fin()
